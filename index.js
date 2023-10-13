@@ -1,8 +1,9 @@
 import http from "http"
 import fs from "fs"
 
-const port = 2604
-const hostname = "localhost"
+// uncomment for local usage
+// const port = 2604
+// const hostname = "localhost"
 
 const server = http.createServer((req, res) => {
   switch (req.url) {
@@ -54,6 +55,10 @@ const server = http.createServer((req, res) => {
   }
 })
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}`)
-})
+// Uncomment for local usage
+// server.listen(port, hostname, () => {
+//   console.log(`Server running at http://${hostname}:${port}`)
+// })
+
+// Comment for local usage
+server.listen()
