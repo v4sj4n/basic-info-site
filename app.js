@@ -14,10 +14,14 @@ const publicPath = path.join(__dirname, "public/")
 
 app.get("*", (req, res) => {
   const fileToSend = routes[req.url] || "404.html"
-  if (Object.keys(routes).includes(req.url)) {
-    res.sendFile(path.join(publicPath, fileToSend))
-  } else {
-    res.status(404).sendFile(path.join(publicPath, "404.html"))
+  try {
+    if (fileToSend != "404.html") {
+      res.status(200).sendFile(path.join(publicPath, fileToSend))
+    } else if (fileToSend) {
+      res.status(404).sendFile(path.join(publicPath, "404.html"))
+    }
+  } catch (err) {
+    res.status(500).send("Encountered a server error")
   }
 })
 
